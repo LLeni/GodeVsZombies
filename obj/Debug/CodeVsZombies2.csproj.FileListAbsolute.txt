@@ -1,0 +1,9 @@
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\bin\Debug\CodeVsZombies2.exe.config
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\bin\Debug\CodeVsZombies2.exe
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\bin\Debug\CodeVsZombies2.pdb
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.csprojAssemblyReference.cache
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.Form1.resources
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.Properties.Resources.resources
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.csproj.GenerateResource.cache
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.exe
+C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.pdb
