@@ -60,51 +60,55 @@ namespace CodeVsZombies2
                     }
                 }
 
-                // узнаем угол между гипотенузой и горизонтальным катетом
-                // AB - гипотенуза
-                // AC - горизонтальный катет
-
+                Console.Write(min + " - минимум");
 
                 double Ax, Ay, Bx, By;
-                if (indexHuman == 0)
+
+                if (distances[nZombie][indexHuman] <= 40)
                 {
+                    if (indexHuman == 0)
+                    {
+                        problem.zombies[nZombie].x = problem.player.x;
+                        problem.zombies[nZombie].y = problem.player.y;
 
-
-                    Ax = problem.zombies[nZombie].x;
-                    Ay = problem.zombies[nZombie].y;
-
-                    Bx = problem.player.x;
-                    By = problem.player.y;
-
+                    } else
+                    {
+                        problem.zombies[nZombie].x = problem.humans[indexHuman - 1].x;
+                        problem.zombies[nZombie].y = problem.humans[indexHuman - 1].y;
+                    }
                 }
                 else
                 {
+
                     Ax = problem.zombies[nZombie].x;
                     Ay = problem.zombies[nZombie].y;
+                    if (indexHuman == 0)
+                    {
+                        Bx = problem.player.x;
+                        By = problem.player.y;
 
-                    Bx = problem.humans[indexHuman-1].x;
-                    By = problem.humans[indexHuman - 1].y;
+                    }
+                    else
+                    {
 
+                        Bx = problem.humans[indexHuman - 1].x;
+                        By = problem.humans[indexHuman - 1].y;
+
+                    }
+
+                    double dx = Bx - Ax;
+                    double dy = By - Ay;
+
+                    // нормализующий вектор
+                    double nx = dx / Math.Sqrt(dx * dx + dy * dy);
+                    double ny = dy / Math.Sqrt(dx * dx + dy * dy);
+
+                    double shiftX = 40 * nx;
+                    double shiftY = 40 * ny;
+
+                    problem.zombies[nZombie].x = shiftX + problem.zombies[nZombie].x;
+                    problem.zombies[nZombie].y = shiftY + problem.zombies[nZombie].y;
                 }
-
-                double dx = Bx - Ax;
-                double dy = By - Ay;
-
-                // нормализующий вектор
-                double nx = dx / Math.Sqrt(dx * dx + dy * dy);
-                double ny = dy / Math.Sqrt(dx * dx + dy * dy);
-                Console.WriteLine("Нормализующий вектор " + nx + " и " + ny);
-                /*double ex = Cx - Ax;
-                double ey = Cy - Ay;
-                d
-                double angle = (dx * ex + dy * ey) / (Math.Sqrt(dx * dx + dy * dy) + Math.Sqrt(ex * ex + ey * ey));
-                Console.WriteLine(angle + " ddddd");*/
-
-                double newX = 40 * nx;
-                double newY = 40 * ny;
-
-                problem.zombies[nZombie].x = newX;
-                problem.zombies[nZombie].y = newY;
             }
 
             

@@ -15,7 +15,7 @@ namespace CodeVsZombies2
         public CodeVsZombieProblem()
         {
             zombies = new Zombie[5];
-            zombies[0] = new Zombie(1200, 400);
+            zombies[0] = new Zombie(500, 0);
             for (int i = 1; i < 5; i++)
             {
                 zombies[i] = new Zombie(i*100, i*100);
