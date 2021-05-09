@@ -25,7 +25,7 @@ namespace CodeVsZombies2
             humans[0] = new Human(250, 200, 0);
             humans[1] = new Human(500, 200, 1);
 
-            player = new Player(400, 100);
+            player = new Player(400, 100, -1);
         }
     }
 }

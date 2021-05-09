@@ -14,20 +14,20 @@ namespace CodeVsZombies2
     {
 
 
-        public Bitmap ZombieSprite = Properties.Resources.ZombieSprite,
-                      HumanSprite = Properties.Resources.HumanSprite,
-                      AshSprite = Properties.Resources.AshSprite;
 
         CodeVsZombieProblem problem;
         ZombieController zombieController;
+        Visualization visualization;
+
         public Form1()
         {
-
             problem = new CodeVsZombieProblem();
             zombieController = new ZombieController(problem);
+            visualization = new Visualization(problem);
 
             InitializeComponent();
 
+ 
 
 
             timer1.Interval = 2000;
@@ -46,27 +46,10 @@ namespace CodeVsZombies2
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
 
-            Pen pen = new Pen(new SolidBrush(Color.Aqua));
 
-            Console.Out.WriteLine(g);
-
-
-
-            for (int i = 0; i < problem.humans.Length; i++)
-            {
-                if (problem.humans[i].isAlive)
-                {
-                    g.DrawImage(HumanSprite, new Rectangle((int)problem.humans[i].x - 8, (int)problem.humans[i].y - 8, 16, 16));
-                }
-            }
-
-            for (int i = 0; i < problem.zombies.Length; i++)
-            {
-                g.DrawImage(ZombieSprite, new Rectangle((int) problem.zombies[i].x - 8, (int) problem.zombies[i].y - 8, 16, 16));
-            }
-
-            g.DrawImage(AshSprite, new Rectangle((int) problem.player.x - 8, (int) problem.player.y - 8, 16, 16));
-
+            visualization.showTargets(g);
+            visualization.showDirections(g);
+    
 
 
 

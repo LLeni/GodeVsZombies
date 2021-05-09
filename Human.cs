@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace CodeVsZombies2
 {
-    class Human : IHuman
+    class Human : Target
     {
-        public double x;
-        public double y;
-        public int index;
         public bool isAlive;
 
-        public Human(double x, double y, int index)
+        public Human(double x, double y, int index):base(x, y, index)
         {
-            this.x = x;
-            this.y = y;
-            this.index = index;
             isAlive = true;
 
         }

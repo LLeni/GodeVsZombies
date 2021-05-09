@@ -69,9 +69,10 @@ namespace CodeVsZombies2
 
                 //TODO: необходимо создать родительский класс для Human и Player DONE
                 //TODO: во всех ветвях у зомби есть цель DONE
-                //TODO: Отображение кругов перенести в Visualization
-                //TODO: В Visualization отображать направления зомби
+                //TODO: Отображение кругов перенести в Visualization DONE
+                //TODO: В Visualization отображать направления зомби (не работает) 
                 //TODO: когда зомби близко к цели - съездает и переключается на следующую  DONE
+
 
                 if (distances[nZombie][indexHuman] <= 40)
                 {

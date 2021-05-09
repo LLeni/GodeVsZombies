@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace CodeVsZombies2
 {
-    class Player : IHuman
+    class Player : Target
     {
         public Zombie currentZombie;
-        public double x;
-        public double y;
 
-        public Player(double x, double y)
+
+        public Player(double x, double y, int index):base(x, y, index)
         {
-            this.x = x;
-            this.y = y;
+  
         }
 
 

@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace CodeVsZombies2
 {
-    class Zombie
+    class Target
     {
-
-        public Target currentHuman;
         public double x;
         public double y;
         public int index;
 
-        public Zombie(double x, double y, int index)
+        public Target(double x, double y, int index)
         {
             this.x = x;
             this.y = y;
