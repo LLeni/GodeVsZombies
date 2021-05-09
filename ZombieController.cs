@@ -29,12 +29,16 @@ namespace CodeVsZombies2
             {
                 for(int nHuman = 0; nHuman < problem.humans.Length + 1; nHuman++)
                 {
-                    if(nHuman == 0)
+                    if (distances[nZombie][nHuman] != -1)
                     {
-                        distances[nZombie][nHuman] = Math.Sqrt(Math.Pow(problem.zombies[nZombie].x  - problem.player.x, 2) + Math.Pow(problem.zombies[nZombie].y - problem.player.y, 2));
-                    } else
-                    {
-                        distances[nZombie][nHuman] = Math.Sqrt(Math.Pow(problem.zombies[nZombie].x - problem.humans[nHuman - 1].x, 2) + Math.Pow(problem.zombies[nZombie].y - problem.humans[nHuman - 1].y, 2));
+                        if (nHuman == 0)
+                        {
+                            distances[nZombie][nHuman] = Math.Sqrt(Math.Pow(problem.zombies[nZombie].x - problem.player.x, 2) + Math.Pow(problem.zombies[nZombie].y - problem.player.y, 2));
+                        }
+                        else
+                        {
+                            distances[nZombie][nHuman] = Math.Sqrt(Math.Pow(problem.zombies[nZombie].x - problem.humans[nHuman - 1].x, 2) + Math.Pow(problem.zombies[nZombie].y - problem.humans[nHuman - 1].y, 2));
+                        }
                     }
                     Console.Write(distances[nZombie][nHuman] + " ");
                 }
@@ -52,7 +56,7 @@ namespace CodeVsZombies2
                 min = int.MaxValue;
                 for (int nHuman = 0; nHuman < problem.humans.Length + 1; nHuman++)
                 {
-                    if (distances[nZombie][nHuman] < min)
+                    if (distances[nZombie][nHuman] < min && distances[nZombie][nHuman] != -1)
                     {
                      
                         min = distances[nZombie][nHuman];
@@ -60,9 +64,14 @@ namespace CodeVsZombies2
                     }
                 }
 
-                Console.Write(min + " - минимум");
 
                 double Ax, Ay, Bx, By;
+
+                //TODO: необходимо создать родительский класс для Human и Player DONE
+                //TODO: во всех ветвях у зомби есть цель DONE
+                //TODO: Отображение кругов перенести в Visualization
+                //TODO: В Visualization отображать направления зомби
+                //TODO: когда зомби близко к цели - съездает и переключается на следующую  DONE
 
                 if (distances[nZombie][indexHuman] <= 40)
                 {
@@ -70,11 +79,14 @@ namespace CodeVsZombies2
                     {
                         problem.zombies[nZombie].x = problem.player.x;
                         problem.zombies[nZombie].y = problem.player.y;
+                        //убить игрока невозможно
 
                     } else
                     {
                         problem.zombies[nZombie].x = problem.humans[indexHuman - 1].x;
                         problem.zombies[nZombie].y = problem.humans[indexHuman - 1].y;
+                        Console.WriteLine("СЪЕЛИ");
+                        eat(indexHuman);
                     }
                 }
                 else
@@ -86,13 +98,15 @@ namespace CodeVsZombies2
                     {
                         Bx = problem.player.x;
                         By = problem.player.y;
-
+                        problem.zombies[nZombie].currentHuman = problem.player;
                     }
                     else
                     {
 
                         Bx = problem.humans[indexHuman - 1].x;
                         By = problem.humans[indexHuman - 1].y;
+                        problem.zombies[nZombie].currentHuman = problem.humans[indexHuman - 1];
+
 
                     }
 
@@ -118,6 +132,17 @@ namespace CodeVsZombies2
 
             }*/
             CalculateDistances();
+        }
+
+
+        //Зомби съездает человека и в матрице весов дистанция до него меняется на -1, что значит он мертв
+        private void eat(int indexHuman)
+        {
+            problem.humans[indexHuman - 1].isAlive = false;
+            for(int nZombie = 0; nZombie < problem.zombies.Length; nZombie++)
+            {
+                distances[nZombie][indexHuman] = -1;
+            }
         }
     }
 }

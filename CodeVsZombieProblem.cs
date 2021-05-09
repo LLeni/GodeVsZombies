@@ -15,15 +15,15 @@ namespace CodeVsZombies2
         public CodeVsZombieProblem()
         {
             zombies = new Zombie[5];
-            zombies[0] = new Zombie(500, 0);
+            zombies[0] = new Zombie(500, 0, 0);
             for (int i = 1; i < 5; i++)
             {
-                zombies[i] = new Zombie(i*100, i*100);
+                zombies[i] = new Zombie(i*100, i*100, i);
             }
 
             humans = new Human[2];
-            humans[0] = new Human(250, 200);
-            humans[1] = new Human(500, 200);
+            humans[0] = new Human(250, 200, 0);
+            humans[1] = new Human(500, 200, 1);
 
             player = new Player(400, 100);
         }

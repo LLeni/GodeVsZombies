@@ -9,14 +9,16 @@ namespace CodeVsZombies2
     class Zombie
     {
 
-        public Human currentHuman;
+        public IHuman currentHuman;
         public double x;
         public double y;
+        public int index;
 
-        public Zombie(double x, double y)
+        public Zombie(double x, double y, int index)
         {
             this.x = x;
             this.y = y;
+            this.index = index;
         }
     }
 }

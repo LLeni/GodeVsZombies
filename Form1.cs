@@ -18,8 +18,6 @@ namespace CodeVsZombies2
                       HumanSprite = Properties.Resources.HumanSprite,
                       AshSprite = Properties.Resources.AshSprite;
 
-        public bool isEvenUpdate = false;
-
         CodeVsZombieProblem problem;
         ZombieController zombieController;
         public Form1()
@@ -56,7 +54,10 @@ namespace CodeVsZombies2
 
             for (int i = 0; i < problem.humans.Length; i++)
             {
-                g.DrawImage(HumanSprite, new Rectangle((int) problem.humans[i].x - 8, (int) problem.humans[i].y - 8, 16, 16));
+                if (problem.humans[i].isAlive)
+                {
+                    g.DrawImage(HumanSprite, new Rectangle((int)problem.humans[i].x - 8, (int)problem.humans[i].y - 8, 16, 16));
+                }
             }
 
             for (int i = 0; i < problem.zombies.Length; i++)
@@ -69,16 +70,6 @@ namespace CodeVsZombies2
 
 
 
-
-            if (isEvenUpdate)
-            {
-                g.DrawLine(pen, 100, 100, 500, 500);
-                isEvenUpdate = false;
-            } else
-            {
-                g.DrawLine(pen, 100, 500, 500, 100);
-                isEvenUpdate = true;
-            }
         }
     }
 }

@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="CodeVsZombieProblem.cs" />
     <Compile Include="Human.cs" />
+    <Compile Include="IHuman.cs" />
+    <Compile Include="Visualization.cs" />
     <Compile Include="Zombie.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Form1.cs">

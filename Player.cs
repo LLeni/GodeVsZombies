@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeVsZombies2
 {
-    class Player
+    class Player : IHuman
     {
         public Zombie currentZombie;
         public double x;
