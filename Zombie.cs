@@ -10,10 +10,10 @@ namespace CodeVsZombies2
     {
 
         public Human currentHuman;
-        public int x;
-        public int y;
+        public double x;
+        public double y;
 
-        public Zombie(int x, int y)
+        public Zombie(double x, double y)
         {
             this.x = x;
             this.y = y;

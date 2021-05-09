@@ -19,17 +19,27 @@ namespace CodeVsZombies2
                       AshSprite = Properties.Resources.AshSprite;
 
         public bool isEvenUpdate = false;
+
+        CodeVsZombieProblem problem;
+        ZombieController zombieController;
         public Form1()
         {
+
+            problem = new CodeVsZombieProblem();
+            zombieController = new ZombieController(problem);
+
             InitializeComponent();
 
-            timer1.Interval = 50;
+
+
+            timer1.Interval = 2000;
             timer1.Tick += new EventHandler(Update);
             timer1.Start();
         }
 
         private void Update(object sender, EventArgs e)
         {
+            zombieController.Move();
             Invalidate();
         }
 
@@ -42,19 +52,19 @@ namespace CodeVsZombies2
 
             Console.Out.WriteLine(g);
 
-            CodeVsZombieProblem problem = new CodeVsZombieProblem();
+
 
             for (int i = 0; i < problem.humans.Length; i++)
             {
-                g.DrawImage(HumanSprite, new Rectangle(problem.humans[i].x - 8, problem.humans[i].y - 8, 16, 16));
+                g.DrawImage(HumanSprite, new Rectangle((int) problem.humans[i].x - 8, (int) problem.humans[i].y - 8, 16, 16));
             }
 
             for (int i = 0; i < problem.zombies.Length; i++)
             {
-                g.DrawImage(ZombieSprite, new Rectangle(problem.zombies[i].x - 8, problem.zombies[i].y - 8, 16, 16));
+                g.DrawImage(ZombieSprite, new Rectangle((int) problem.zombies[i].x - 8, (int) problem.zombies[i].y - 8, 16, 16));
             }
 
-            g.DrawImage(AshSprite, new Rectangle(problem.player.x - 8, problem.player.y - 8, 16, 16));
+            g.DrawImage(AshSprite, new Rectangle((int) problem.player.x - 8, (int) problem.player.y - 8, 16, 16));
 
 
 

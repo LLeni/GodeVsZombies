@@ -9,10 +9,10 @@ namespace CodeVsZombies2
     class Player
     {
         public Zombie currentZombie;
-        public int x;
-        public int y;
+        public double x;
+        public double y;
 
-        public Player(int x, int y)
+        public Player(double x, double y)
         {
             this.x = x;
             this.y = y;

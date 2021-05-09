@@ -8,10 +8,10 @@ namespace CodeVsZombies2
 {
     class Human
     {
-        public int x;
-        public int y;
+        public double x;
+        public double y;
 
-        public Human(int x, int y)
+        public Human(double x, double y)
         {
             this.x = x;
             this.y = y;
