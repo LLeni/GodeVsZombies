@@ -20,13 +20,13 @@ namespace CodeVsZombies2
         Visualization visualization;
 
         private bool isPaused;
+        private bool isStarted;
         public Form1()
         {
-            problem = new CodeVsZombieProblem();
-            gameController = new GameController(problem);
-            visualization = new Visualization(problem, gameController);
+
 
             isPaused = true;
+            isStarted = false;
 
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace CodeVsZombies2
             timer1.Tick += new EventHandler(Update);
             timer1.Start();
 
-            label1.Text = "Скорость действий: " + trackBar1.Value * 100 + " мс";
+            label1.Text = "Скорость ходов: " + trackBar1.Value * 100 + " мс";
         }
 
 /*        1 Zombies move towards their targets.
@@ -68,14 +68,18 @@ namespace CodeVsZombies2
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
 
 
-            visualization.ShowTargets(g);
-            visualization.ShowDirections(g);
-            visualization.ShowRadiusPlayer(g);
-            visualization.ShowHUD(g);
+            if (isStarted)
+            {
+                visualization.ShowTargets(g);
+                visualization.ShowDirections(g);
+                visualization.ShowRadiusPlayer(g);
+                visualization.ShowHUD(g);
+            }
 
 
 
@@ -105,6 +109,23 @@ namespace CodeVsZombies2
         {
             label1.Text = "Скорость ходов: " + trackBar1.Value  * 100 + " мс";
             timer1.Interval = trackBar1.Value * 100;
+        }
+
+
+        //Запуск решения/Повторный запуск
+        private void button2_Click(object sender, EventArgs e)
+        {
+            problem = new CodeVsZombieProblem();
+            gameController = new GameController(problem);
+            visualization = new Visualization(problem, gameController);
+
+            isStarted = true;
+
+            button1.Enabled = true;
+            button1.Text = "Пауза";
+            isPaused = false;
+
+            button2.Text = "Перезапустить";
         }
     }
 }
