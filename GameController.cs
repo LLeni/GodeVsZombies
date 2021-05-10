@@ -22,6 +22,9 @@ namespace CodeVsZombies2
         public int score;
 
         public RandomAlgorithm randomAlgorithm;
+
+        // В своем радиусе
+        public bool isPlayerHasTargets;
         public GameController(CodeVsZombieProblem problem)
         {
             this.problem = problem;

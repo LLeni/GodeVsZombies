@@ -19,18 +19,22 @@ namespace CodeVsZombies2
         GameController gameController;
         Visualization visualization;
 
+        private bool isPaused;
         public Form1()
         {
             problem = new CodeVsZombieProblem();
             gameController = new GameController(problem);
             visualization = new Visualization(problem, gameController);
 
+            isPaused = true;
+
             InitializeComponent();
 
-
-            timer1.Interval =  500;
+            timer1.Interval =  trackBar1.Value  * 100;
             timer1.Tick += new EventHandler(Update);
             timer1.Start();
+
+            label1.Text = "Скорость действий: " + trackBar1.Value * 100 + " мс";
         }
 
 /*        1 Zombies move towards their targets.
@@ -40,21 +44,26 @@ namespace CodeVsZombies2
           // TODO: Разделить логику перемещения и поедание людей в Zombie
         private void Update(object sender, EventArgs e)
         {
-            switch (gameController.numberNextAction) {
-                case 1:
-                    gameController.MoveZombies();
-                    break;
-                case 2:
-                    gameController.MovePlayer();
-                    break;
-                case 3:
-                    gameController.KillZombies();
-                    break;
-                case 4:
-                    gameController.EatHumans();
-                    break;
+            if (!isPaused)
+            {
+                switch (gameController.numberNextAction)
+                {
+                    case 1:
+                        gameController.MoveZombies();
+                        break;
+                    case 2:
+                        gameController.MovePlayer();
+                        break;
+                    case 3:
+                        gameController.KillZombies();
+                        break;
+                    case 4:
+                        gameController.EatHumans();
+                        break;
+                }
+
+                Invalidate();
             }
-            Invalidate();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -70,6 +79,32 @@ namespace CodeVsZombies2
 
 
 
+        }
+
+        private void SetRemotePanel()
+        {
+
+        }
+
+        //Пауза/ 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(button1.Text == "Пауза")
+            {
+                isPaused = true;
+                button1.Text = "Продолжить";
+            }
+            else
+            {
+                isPaused = false;
+                button1.Text = "Пауза";
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label1.Text = "Скорость ходов: " + trackBar1.Value  * 100 + " мс";
+            timer1.Interval = trackBar1.Value * 100;
         }
     }
 }

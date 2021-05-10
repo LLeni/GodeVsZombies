@@ -18,6 +18,9 @@ namespace CodeVsZombies2
         public CodeVsZombieProblem problem;
         public GameController gameController;
 
+        public const int WIDTH_FIELD = 1600;
+        public const int HEIGHT_FIELD = 900;
+
         public Visualization(CodeVsZombieProblem problem, GameController gameController)
         {
             this.problem = problem;
@@ -106,5 +109,10 @@ namespace CodeVsZombies2
             return g;
         }
      
+
+        public Graphics ShowDirectionsShots(Graphics g)
+        {
+            return g;
+        }
     }
 }

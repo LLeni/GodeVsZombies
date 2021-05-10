@@ -16,6 +16,8 @@ namespace CodeVsZombies2
             random = new Random();
         }
 
+
+        //TODO: Запретить выходить за рамки
         public void Move()
         {
             // единичный вектор
