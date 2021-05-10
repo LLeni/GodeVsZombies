@@ -20,16 +20,24 @@ namespace CodeVsZombies2
         public int numberNextAction;
 
         public int score;
+
+        public RandomAlgorithm randomAlgorithm;
         public GameController(CodeVsZombieProblem problem)
         {
             this.problem = problem;
-            numberRound = 0;
-            numberNextAction = 1;
-            score = 0;
+            zombieController = new ZombieController(problem);
+
             countZombies = problem.zombies.Length;
             countHumans = problem.humans.Length;
 
-            zombieController = new ZombieController(problem);
+            numberRound = 0;
+            numberNextAction = 1;
+            score = 0;
+            
+
+            
+
+            randomAlgorithm = new RandomAlgorithm(problem);
         }
 
         public void KillZombies()
@@ -81,7 +89,7 @@ namespace CodeVsZombies2
             int[] multipliers = new int[countKilledZombies];
             multipliers[0] = 1;
             multipliers[1] = 2;
-            for (int nKilledZombie = 2; nKilledZombie <= countKilledZombies; nKilledZombie++)
+            for (int nKilledZombie = 2; nKilledZombie < countKilledZombies; nKilledZombie++)
             {
                 multipliers[nKilledZombie] = multipliers[nKilledZombie - 2] + multipliers[nKilledZombie - 1];
                 score += worthZombie * multipliers[nKilledZombie];
@@ -93,6 +101,8 @@ namespace CodeVsZombies2
         {
             action = "перемещение игрока";
             numberNextAction = 3;
+
+            randomAlgorithm.Move();
         }
 
 

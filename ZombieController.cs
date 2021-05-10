@@ -50,7 +50,7 @@ namespace CodeVsZombies2
         public void Move()
         {
            
-            double min = int.MaxValue;
+            double min;
             int indexHuman = -1;
             for (int nZombie = 0; nZombie < problem.zombies.Length; nZombie++)
             {
@@ -59,12 +59,10 @@ namespace CodeVsZombies2
                 {
                     if (distances[nZombie][nHuman] < min && distances[nZombie][nHuman] != -1)
                     {
-                     
                         min = distances[nZombie][nHuman];
                         indexHuman = nHuman;
                     }
                 }
-
 
                 double Ax, Ay, Bx, By;
 
@@ -74,17 +72,14 @@ namespace CodeVsZombies2
                     {
                         problem.zombies[nZombie].x = problem.player.x;
                         problem.zombies[nZombie].y = problem.player.y;
-
                     } else
                     {
                         problem.zombies[nZombie].x = problem.humans[indexHuman - 1].x;
                         problem.zombies[nZombie].y = problem.humans[indexHuman - 1].y;
-
                     }
                 }
                 else
                 {
-
                     Ax = problem.zombies[nZombie].x;
                     Ay = problem.zombies[nZombie].y;
                     if (indexHuman == 0)
@@ -95,12 +90,9 @@ namespace CodeVsZombies2
                     }
                     else
                     {
-
                         Bx = problem.humans[indexHuman - 1].x;
                         By = problem.humans[indexHuman - 1].y;
                         problem.zombies[nZombie].currentHuman = problem.humans[indexHuman - 1];
-
-
                     }
 
                     double dx = Bx - Ax;

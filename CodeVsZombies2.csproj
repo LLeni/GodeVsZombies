@@ -49,6 +49,7 @@
     <Compile Include="CodeVsZombieProblem.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="Human.cs" />
+    <Compile Include="RandomAlgorithm.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="Visualization.cs" />
     <Compile Include="Zombie.cs" />
