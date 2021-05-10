@@ -16,26 +16,44 @@ namespace CodeVsZombies2
 
 
         CodeVsZombieProblem problem;
-        ZombieController zombieController;
+        GameController gameController;
         Visualization visualization;
 
         public Form1()
         {
             problem = new CodeVsZombieProblem();
-            zombieController = new ZombieController(problem);
-            visualization = new Visualization(problem);
+            gameController = new GameController(problem);
+            visualization = new Visualization(problem, gameController);
 
             InitializeComponent();
 
 
-            timer1.Interval = 500;
+            timer1.Interval =  500;
             timer1.Tick += new EventHandler(Update);
             timer1.Start();
         }
 
+/*        1 Zombies move towards their targets.
+          2 Ash moves towards his target.
+          3 Any zombie within a 2000 unit range around Ash is destroyed.
+          4 Zombies eat any human they share coordinates with.*/
+          // TODO: Разделить логику перемещения и поедание людей в Zombie
         private void Update(object sender, EventArgs e)
         {
-            zombieController.Move();
+            switch (gameController.numberNextAction) {
+                case 1:
+                    gameController.MoveZombies();
+                    break;
+                case 2:
+                    gameController.MovePlayer();
+                    break;
+                case 3:
+                    gameController.KillZombies();
+                    break;
+                case 4:
+                    gameController.EatHumans();
+                    break;
+            }
             Invalidate();
         }
 

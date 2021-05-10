@@ -16,10 +16,12 @@ namespace CodeVsZombies2
                       AshSprite = Properties.Resources.AshSprite;
 
         public CodeVsZombieProblem problem;
+        public GameController gameController;
 
-        public Visualization(CodeVsZombieProblem problem)
+        public Visualization(CodeVsZombieProblem problem, GameController gameController)
         {
             this.problem = problem;
+            this.gameController = gameController;
         }
 
         public Graphics ShowTargets(Graphics g) {
@@ -37,7 +39,10 @@ namespace CodeVsZombies2
             //Зомби
             for (int i = 0; i < problem.zombies.Length; i++)
             {
-                g.DrawImage(ZombieSprite, new Rectangle((int)problem.zombies[i].x - 8, (int)problem.zombies[i].y - 8, 16, 16));
+                if (problem.zombies[i].isAlive)
+                {
+                    g.DrawImage(ZombieSprite, new Rectangle((int)problem.zombies[i].x - 8, (int)problem.zombies[i].y - 8, 16, 16));
+                }
             }
 
 
@@ -53,14 +58,15 @@ namespace CodeVsZombies2
             Pen pen = new Pen(new SolidBrush(Color.Red));
 
             for (int nZombie = 0; nZombie < problem.zombies.Length; nZombie++) {
-                if (problem.zombies[0].currentHuman != null)
+                if (problem.zombies[nZombie].isAlive && problem.zombies[nZombie].currentHuman != null)
                 {
-                    if (problem.zombies[0].currentHuman.index == -1)
+                    if (problem.zombies[nZombie].currentHuman.index == -1)
                     {
                         g.DrawLine(pen, (int)problem.zombies[nZombie].x, (int)problem.zombies[nZombie].y, (int)problem.player.x, (int)problem.player.y);
                     }
                     else
                     {
+
                         g.DrawLine(pen, (int)problem.zombies[nZombie].x, (int)problem.zombies[nZombie].y, (int)problem.humans[problem.zombies[nZombie].currentHuman.index].x, (int)problem.humans[problem.zombies[nZombie].currentHuman.index].y);
                     }
                 }
@@ -72,7 +78,7 @@ namespace CodeVsZombies2
         public Graphics ShowRadiusPlayer(Graphics g)
         {
             Pen pen = new Pen(new SolidBrush(Color.Yellow));
-            g.DrawEllipse(pen, new Rectangle((int)problem.player.x - 100, (int)problem.player.y - 100, 200, 200));
+            g.DrawEllipse(pen, new Rectangle((int)problem.player.x - 200, (int)problem.player.y - 200, 400, 400));
             return g;
         }
 
@@ -82,14 +88,21 @@ namespace CodeVsZombies2
             Font drawFont = new Font("Arial", 16);
             SolidBrush drawBrush = new SolidBrush(Color.White);
 
-            String countZombiesString= "Количество зомби: ";
+            String countZombiesString= "Количество зомби: " + gameController.countZombies;
             g.DrawString(countZombiesString, drawFont, drawBrush, 5, 5, new StringFormat());
 
-            String countHumansString = "Количество людей: ";
+            String countHumansString = "Количество людей: " + gameController.countHumans;
             g.DrawString(countHumansString, drawFont, drawBrush, 5, 25, new StringFormat());
 
-            String scoreString = "Очки: ";
+            String scoreString = "Очки: " + gameController.score;
             g.DrawString(scoreString, drawFont, drawBrush, 5, 45, new StringFormat());
+
+            String numberRoundString = "Раунд: " + gameController.numberRound;
+            g.DrawString(numberRoundString, drawFont, drawBrush, 1450, 5, new StringFormat());
+
+            String actionString = "Действие: " + gameController.action;
+            g.DrawString(actionString, drawFont, drawBrush, 1200, 25, new StringFormat());
+
             return g;
         }
      

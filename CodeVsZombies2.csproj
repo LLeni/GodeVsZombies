@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeVsZombieProblem.cs" />
+    <Compile Include="GameController.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Target.cs" />
     <Compile Include="Visualization.cs" />

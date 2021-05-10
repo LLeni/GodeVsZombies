@@ -49,6 +49,7 @@ namespace CodeVsZombies2
 
         public void Move()
         {
+           
             double min = int.MaxValue;
             int indexHuman = -1;
             for (int nZombie = 0; nZombie < problem.zombies.Length; nZombie++)
@@ -67,27 +68,18 @@ namespace CodeVsZombies2
 
                 double Ax, Ay, Bx, By;
 
-                //TODO: необходимо создать родительский класс для Human и Player DONE
-                //TODO: во всех ветвях у зомби есть цель DONE
-                //TODO: Отображение кругов перенести в Visualization DONE
-                //TODO: В Visualization отображать направления зомби (не работает) 
-                //TODO: когда зомби близко к цели - съездает и переключается на следующую  DONE
-
-
                 if (distances[nZombie][indexHuman] <= 40)
                 {
                     if (indexHuman == 0)
                     {
                         problem.zombies[nZombie].x = problem.player.x;
                         problem.zombies[nZombie].y = problem.player.y;
-                        //убить игрока невозможно
 
                     } else
                     {
                         problem.zombies[nZombie].x = problem.humans[indexHuman - 1].x;
                         problem.zombies[nZombie].y = problem.humans[indexHuman - 1].y;
-                        Console.WriteLine("СЪЕЛИ");
-                        eat(indexHuman);
+
                     }
                 }
                 else
@@ -127,23 +119,33 @@ namespace CodeVsZombies2
             }
 
             
-
-         /*   if(min <= 40)
-            {
-
-            }*/
             CalculateDistances();
         }
 
 
-        //Зомби съездает человека и в матрице весов дистанция до него меняется на -1, что значит он мертв
-        private void eat(int indexHuman)
+        //возвращает количество убитых людей
+        public int Eat()
         {
-            problem.humans[indexHuman - 1].isAlive = false;
-            for(int nZombie = 0; nZombie < problem.zombies.Length; nZombie++)
+            int countKilledHumans = 0;
+            for (int nZombie = 0; nZombie < problem.zombies.Length; nZombie++)
             {
-                distances[nZombie][indexHuman] = -1;
+                for (int nHuman = 0; nHuman < problem.humans.Length; nHuman++) {
+                    if (problem.zombies[nZombie].isAlive && problem.humans[nHuman].isAlive && 
+                        problem.zombies[nZombie].x == problem.humans[nHuman].x && problem.zombies[nZombie].y == problem.humans[nHuman].y)
+                    {
+                        // У каждого зомби помечаем, что до убитого человека уже никак не добраться при помощи -1
+                        for(int nZombieAgain = 0; nZombieAgain < problem.zombies.Length; nZombieAgain++)
+                        {
+                            distances[nZombieAgain][nHuman + 1] = -1; // учитывая, что зомби никогда не смогут добраться до игрока
+
+                        }
+                        problem.humans[nHuman].isAlive = false;
+                        countKilledHumans++;
+                        break;
+                    }
+                 }
             }
+            return countKilledHumans;
         }
     }
 }
