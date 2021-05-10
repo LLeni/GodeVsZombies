@@ -22,7 +22,7 @@ namespace CodeVsZombies2
             this.problem = problem;
         }
 
-        public Graphics showTargets(Graphics g) {
+        public Graphics ShowTargets(Graphics g) {
 
 
             //Люди
@@ -48,7 +48,7 @@ namespace CodeVsZombies2
             return g;
         }
 
-        public Graphics showDirections(Graphics g)
+        public Graphics ShowDirections(Graphics g)
         {
             Pen pen = new Pen(new SolidBrush(Color.Red));
 
@@ -65,6 +65,31 @@ namespace CodeVsZombies2
                     }
                 }
             }
+            return g;
+        }
+
+
+        public Graphics ShowRadiusPlayer(Graphics g)
+        {
+            Pen pen = new Pen(new SolidBrush(Color.Yellow));
+            g.DrawEllipse(pen, new Rectangle((int)problem.player.x - 100, (int)problem.player.y - 100, 200, 200));
+            return g;
+        }
+
+        public Graphics ShowHUD(Graphics g)
+        {
+
+            Font drawFont = new Font("Arial", 16);
+            SolidBrush drawBrush = new SolidBrush(Color.White);
+
+            String countZombiesString= "Количество зомби: ";
+            g.DrawString(countZombiesString, drawFont, drawBrush, 5, 5, new StringFormat());
+
+            String countHumansString = "Количество людей: ";
+            g.DrawString(countHumansString, drawFont, drawBrush, 5, 25, new StringFormat());
+
+            String scoreString = "Очки: ";
+            g.DrawString(scoreString, drawFont, drawBrush, 5, 45, new StringFormat());
             return g;
         }
      

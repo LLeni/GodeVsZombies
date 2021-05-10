@@ -21,11 +21,12 @@ namespace CodeVsZombies2
                 zombies[i] = new Zombie(i*100, i*100, i);
             }
 
-            humans = new Human[2];
+            humans = new Human[3];
             humans[0] = new Human(250, 200, 0);
             humans[1] = new Human(500, 200, 1);
+            humans[2] = new Human(1200, 200, 2);
 
-            player = new Player(400, 100, -1);
+            player = new Player(1440, 320, -1);
         }
     }
 }

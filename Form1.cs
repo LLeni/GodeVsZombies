@@ -27,10 +27,8 @@ namespace CodeVsZombies2
 
             InitializeComponent();
 
- 
 
-
-            timer1.Interval = 2000;
+            timer1.Interval = 500;
             timer1.Tick += new EventHandler(Update);
             timer1.Start();
         }
@@ -47,9 +45,10 @@ namespace CodeVsZombies2
             g.Clear(Color.Black);
 
 
-            visualization.showTargets(g);
-            visualization.showDirections(g);
-    
+            visualization.ShowTargets(g);
+            visualization.ShowDirections(g);
+            visualization.ShowRadiusPlayer(g);
+            visualization.ShowHUD(g);
 
 
 
