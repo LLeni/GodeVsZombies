@@ -38,29 +38,21 @@ namespace CodeVsZombies2
             double potentialX = shiftX + problem.player.x;
             double potentialY = shiftY + problem.player.y;
 
-            //TODO: Не все границы складно работают (дело не здесь, а в форме)
-            if (potentialX < 0)
+           
+            if (potentialX < 0 || potentialX > 1600)
             {
-                problem.player.x = 0;
-            } else if (potentialX > 1600)
-            {
-                problem.player.x = 1600;
-            } else
-            {
-                problem.player.x = potentialX;
+                shiftX = -shiftX;
             }
            
-            if(potentialY < 0)
+            if(potentialY < 0 || potentialY > 900)
             {
-                problem.player.y = 0;
-            } else if(potentialY > 900)
-            {
-                problem.player.y = 900;
-            } else
-            {
-                problem.player.y = potentialY;
+                shiftY = -shiftY;
             }
-         
+
+            problem.player.x = shiftX + problem.player.x;
+            problem.player.y = shiftY + problem.player.y;
+
+
         }
     }
 }

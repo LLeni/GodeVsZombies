@@ -32,14 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -58,6 +58,43 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1600, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button4.Location = new System.Drawing.Point(1345, 27);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(165, 55);
+            this.button4.TabIndex = 7;
+            this.button4.Tag = "";
+            this.button4.Text = "Следующая проблема";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.Enabled = false;
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button3.Location = new System.Drawing.Point(919, 27);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(165, 55);
+            this.button3.TabIndex = 6;
+            this.button3.Tag = "";
+            this.button3.Text = "Предыдущая проблема";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(1149, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 24);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Проблема N0";
             // 
             // button2
             // 
@@ -97,9 +134,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Скорость ходов";
+            this.label1.Text = "Скорость хода";
             // 
             // button1
             // 
@@ -114,42 +151,6 @@
             this.button1.Text = "Продолжить";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(1149, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 24);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Проблема N0";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(919, 27);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(165, 55);
-            this.button3.TabIndex = 6;
-            this.button3.Tag = "";
-            this.button3.Text = "Предыдущая проблема";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(1345, 27);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(165, 55);
-            this.button4.TabIndex = 7;
-            this.button4.Tag = "";
-            this.button4.Text = "Следующая проблема";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 

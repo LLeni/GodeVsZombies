@@ -92,20 +92,25 @@ namespace CodeVsZombies2
             Font drawFont = new Font("Arial", 16);
             SolidBrush drawBrush = new SolidBrush(Color.White);
 
-            String countZombiesString= "Количество зомби: " + gameController.countZombies;
+            String countZombiesString= "Количество зомби: ";
             g.DrawString(countZombiesString, drawFont, drawBrush, 5, 5, new StringFormat());
+            g.DrawString("" + gameController.countZombies, drawFont, new SolidBrush(Color.Red), 200, 5, new StringFormat());
 
-            String countHumansString = "Количество людей: " + gameController.countHumans;
+            String countHumansString = "Количество людей: ";
             g.DrawString(countHumansString, drawFont, drawBrush, 5, 25, new StringFormat());
+            g.DrawString("" + gameController.countHumans, drawFont, new SolidBrush(Color.LightGreen), 200, 25, new StringFormat());
 
-            String scoreString = "Очки: " + gameController.score;
+            String scoreString = "Очки: ";
             g.DrawString(scoreString, drawFont, drawBrush, 5, 45, new StringFormat());
+            g.DrawString("" + gameController.score, drawFont, new SolidBrush(Color.Yellow), 65, 45, new StringFormat());
+
+
 
             String numberRoundString = "Раунд: " + gameController.numberRound;
-            g.DrawString(numberRoundString, drawFont, drawBrush, 1450, 5, new StringFormat());
+            g.DrawString(numberRoundString, drawFont, drawBrush, 1400, 5, new StringFormat());
 
-            String actionString = "Действие: " + gameController.action;
-            g.DrawString(actionString, drawFont, drawBrush, 1200, 25, new StringFormat());
+            String actionString = "Ход: " + gameController.action;
+            g.DrawString(actionString, drawFont, drawBrush, 1300, 25, new StringFormat());
 
             return g;
         }

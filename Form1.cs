@@ -36,7 +36,7 @@ namespace CodeVsZombies2
             timer1.Tick += new EventHandler(Update);
             timer1.Start();
 
-            label1.Text = "Скорость ходов: " + trackBar1.Value * 100 + " мс";
+            label1.Text = "Скорость хода: " + trackBar1.Value * 100 + " мс";
             label2.Text = "Проблема N0/" + (problem.amountProblems - 1);
         }
 
@@ -66,6 +66,10 @@ namespace CodeVsZombies2
                             gameController.EatHumans();
                             break;
                     }
+                } else
+                {
+                    isPaused = true;
+                    button1.Enabled = false;
                 }
 
                 Invalidate();
@@ -139,6 +143,11 @@ namespace CodeVsZombies2
             if (problem.indexCurrentProblem - 1 >= 0)
             {
                 SwitchProblem(-1);
+                button4.Enabled = true;
+            }
+            if (problem.indexCurrentProblem == 0)
+            {
+                button3.Enabled = false;
             }
         }
 
@@ -147,6 +156,12 @@ namespace CodeVsZombies2
             if (problem.amountProblems != problem.indexCurrentProblem + 1)
             {
                 SwitchProblem(1);
+                button3.Enabled = true;
+            }
+
+            if (problem.amountProblems != problem.indexCurrentProblem)
+            {
+                button4.Enabled = false;
             }
         }
 
