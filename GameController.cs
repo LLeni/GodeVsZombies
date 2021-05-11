@@ -21,9 +21,16 @@ namespace CodeVsZombies2
 
         public int score;
 
+        public bool isGameOver;
+        public bool isWin;
+
+        // необходимо для эмуляции
+        public int multiplier; 
+        public int receivedScore;
+
         public RandomAlgorithm randomAlgorithm;
 
-        // В своем радиусе
+        // В своем радиусе. Для эмуляции
         public bool isPlayerHasTargets;
         public GameController(CodeVsZombieProblem problem)
         {
@@ -35,10 +42,13 @@ namespace CodeVsZombies2
 
             numberRound = 0;
             numberNextAction = 1;
-            score = 0;
-            
 
-            
+            score = 0;
+
+            isGameOver = false;
+            isWin = false;
+
+            multiplier = 0;
 
             randomAlgorithm = new RandomAlgorithm(problem);
         }
@@ -72,32 +82,53 @@ namespace CodeVsZombies2
             {
                 countZombies -= countKilledZombies;
                 IncreaseScore(countKilledZombies);
+
+                if(countZombies == 0)
+                {
+                    isWin = true;
+                }
             }
         }
 
         private void IncreaseScore(int countKilledZombies)
         {
 
-            Console.WriteLine("Мыыыы здесььь ");
-            int worthZombie = 10 * countHumans * countHumans ;
-
-            score += worthZombie;
-            if (countKilledZombies == 1)
-                return;
-            
-            score += worthZombie * 2;
-            if (countKilledZombies == 2)
-                return;
-
             int[] multipliers = new int[countKilledZombies];
-            multipliers[0] = 1;
-            multipliers[1] = 2;
-            for (int nKilledZombie = 2; nKilledZombie < countKilledZombies; nKilledZombie++)
+            int worthZombie = 10 * countHumans * countHumans ;
+            int receivedScore = 0;
+
+            receivedScore += worthZombie;
+            if (countKilledZombies == 1)
             {
-                multipliers[nKilledZombie] = multipliers[nKilledZombie - 2] + multipliers[nKilledZombie - 1];
-                score += worthZombie * multipliers[nKilledZombie];
+                multiplier = 1;
+                score += receivedScore;
+                this.receivedScore = receivedScore;
+                return;
             }
 
+            receivedScore += worthZombie * 2;
+            if (countKilledZombies == 2)
+            {
+                multiplier = 2;
+                score += receivedScore;
+                this.receivedScore = receivedScore;
+                return;
+            }
+
+            if (countKilledZombies >= 3)
+            {
+                multipliers[0] = 1;
+                multipliers[1] = 2;
+                for (int nKilledZombie = 2; nKilledZombie < countKilledZombies; nKilledZombie++)
+                {
+                    multipliers[nKilledZombie] = multipliers[nKilledZombie - 2] + multipliers[nKilledZombie - 1];
+                    receivedScore += worthZombie * multipliers[nKilledZombie];
+                }
+      
+            }
+            multiplier = multipliers[countKilledZombies - 1];
+            score += receivedScore;
+            this.receivedScore = receivedScore;
         }
 
         public void MovePlayer()
@@ -120,11 +151,15 @@ namespace CodeVsZombies2
         }
         public void EatHumans()
         {
+            multiplier = 0;
             action = "поедание людей";
             numberNextAction = 1;
             int countKilledHumans= zombieController.Eat();
             countHumans -= countKilledHumans;
-            
+            if(countHumans == 0)
+            {
+                isGameOver = true;
+            }
         }
     }
 }

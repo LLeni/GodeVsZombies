@@ -52,7 +52,7 @@
     <Compile Include="Human.cs" />
     <Compile Include="RandomAlgorithm.cs" />
     <Compile Include="Target.cs" />
-    <Compile Include="Visualization.cs" />
+    <Compile Include="Simulation.cs" />
     <Compile Include="Zombie.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Form1.cs">

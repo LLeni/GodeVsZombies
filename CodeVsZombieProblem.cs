@@ -41,6 +41,12 @@ namespace CodeVsZombies2
             }
         }
 
+        //Выглядит довольно странно. Может поработать над именами и сделать один метод, а не два различных
+        public void RestartProblem()
+        {
+            SetProblem();
+        }
+
         private void SetProblem()
         {
             String[] values = codeVsZombieProblemRepo.tests[indexCurrentProblem].Split(' ');

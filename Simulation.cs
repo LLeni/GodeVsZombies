@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace CodeVsZombies2
 {
-    class Visualization
+    //Класс, который отображает то, что используе данные из условия
+    class Simulation
     {
 
 
@@ -21,7 +22,7 @@ namespace CodeVsZombies2
         public const int WIDTH_FIELD = 1600;
         public const int HEIGHT_FIELD = 900;
 
-        public Visualization(CodeVsZombieProblem problem, GameController gameController)
+        public Simulation(CodeVsZombieProblem problem, GameController gameController)
         {
             this.problem = problem;
             this.gameController = gameController;
@@ -112,6 +113,44 @@ namespace CodeVsZombies2
 
         public Graphics ShowDirectionsShots(Graphics g)
         {
+            return g;
+        }
+
+
+        //TODO: правильно централизовать надписи по центру
+        public Graphics ShowGameOverText(Graphics g)
+        {
+            Font drawFont = new Font("Arial", 30);
+            SolidBrush drawBrush = new SolidBrush(Color.Red);
+
+
+            String actionString = "GAME OVER";
+            g.DrawString(actionString, drawFont, drawBrush, 800, 450, new StringFormat());
+            return g;
+        }
+
+        public Graphics ShowWinText(Graphics g)
+        {
+            Font drawFont = new Font("Arial", 30);
+            SolidBrush drawBrush = new SolidBrush(Color.Green);
+
+            g.DrawString("WIN", drawFont, drawBrush, 800, 450, new StringFormat());
+            g.DrawString("Набранное количество очков " + gameController.score, drawFont, drawBrush, 800, 500, new StringFormat());
+            return g;
+        }
+
+        public Graphics ShowMultiplierAndReceivedScore(Graphics g)
+        {
+            if(gameController.multiplier != 0)
+            {
+                Font drawFont = new Font("Arial", 12);
+                SolidBrush drawBrush = new SolidBrush(Color.Yellow);
+                
+                g.DrawString("x"+gameController.multiplier, drawFont, drawBrush, (int)problem.player.x + 8, (int)problem.player.y - 16, new StringFormat());
+                g.DrawString("" + gameController.receivedScore, drawFont, drawBrush, (int)problem.player.x + 8, (int)problem.player.y + 8, new StringFormat());
+            }
+
+            
             return g;
         }
     }

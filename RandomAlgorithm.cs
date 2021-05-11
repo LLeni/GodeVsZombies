@@ -37,6 +37,8 @@ namespace CodeVsZombies2
 
             double potentialX = shiftX + problem.player.x;
             double potentialY = shiftY + problem.player.y;
+
+            //TODO: Не все границы складно работают (дело не здесь, а в форме)
             if (potentialX < 0)
             {
                 problem.player.x = 0;

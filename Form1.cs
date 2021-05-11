@@ -17,7 +17,7 @@ namespace CodeVsZombies2
 
         CodeVsZombieProblem problem;
         GameController gameController;
-        Visualization visualization;
+        Simulation visualization;
 
         private bool isPaused;
         private bool isStarted;
@@ -49,20 +49,23 @@ namespace CodeVsZombies2
         {
             if (!isPaused)
             {
-                switch (gameController.numberNextAction)
+                if (!gameController.isGameOver && !gameController.isWin)
                 {
-                    case 1:
-                        gameController.MoveZombies();
-                        break;
-                    case 2:
-                        gameController.MovePlayer();
-                        break;
-                    case 3:
-                        gameController.KillZombies();
-                        break;
-                    case 4:
-                        gameController.EatHumans();
-                        break;
+                    switch (gameController.numberNextAction)
+                    {
+                        case 1:
+                            gameController.MoveZombies();
+                            break;
+                        case 2:
+                            gameController.MovePlayer();
+                            break;
+                        case 3:
+                            gameController.KillZombies();
+                            break;
+                        case 4:
+                            gameController.EatHumans();
+                            break;
+                    }
                 }
 
                 Invalidate();
@@ -70,7 +73,7 @@ namespace CodeVsZombies2
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
-        {      
+        {
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
 
@@ -79,9 +82,15 @@ namespace CodeVsZombies2
                 visualization.ShowTargets(g);
                 visualization.ShowDirections(g);
                 visualization.ShowRadiusPlayer(g);
+                visualization.ShowMultiplierAndReceivedScore(g);
                 visualization.ShowHUD(g);
-            }
 
+                if (gameController.isGameOver)
+                    visualization.ShowGameOverText(g);
+                if(gameController.isWin)
+                    visualization.ShowWinText(g);
+
+            }
         }
 
         //Пауза/ 
@@ -109,9 +118,10 @@ namespace CodeVsZombies2
         //Запуск решения/Повторный запуск
         private void button2_Click(object sender, EventArgs e)
         {
-;
+
+            problem.RestartProblem();
             gameController = new GameController(problem);
-            visualization = new Visualization(problem, gameController);
+            visualization = new Simulation(problem, gameController);
 
             isStarted = true;
 
@@ -121,7 +131,6 @@ namespace CodeVsZombies2
 
             button2.Text = "Перезапустить";
 
-            // Надо бы исправить это. Перекинуть в другое место как-нибудь
         }
 
         //Кнопка предыдущего решения
