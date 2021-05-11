@@ -21,18 +21,44 @@ namespace CodeVsZombies2
         public void Move()
         {
             // единичный вектор
-            double nx = random.NextDouble() * 2;
-            double ny = random.NextDouble() * 2;
+            double nx = random.NextDouble() * 2 - 1;
 
+            double ny = Math.Sqrt(1 - nx*nx);
+            if (random.Next(2) == 0)
+            {
+                ny = -ny;
+            }
 
-            nx = nx <= 1 ? -nx - 1 : nx - 1;
-            ny = ny <= 1 ? -ny - 1 : ny - 1;
+            Console.WriteLine("nx = " + nx + " и ny = " + ny);
+            Console.WriteLine("Длина единичного вектора: " + Math.Sqrt(nx * nx + ny * ny));
 
             double shiftX = 100 * nx;
             double shiftY = 100 * ny;
 
-            problem.player.x = shiftX + problem.player.x;
-            problem.player.y = shiftY + problem.player.y;
+            double potentialX = shiftX + problem.player.x;
+            double potentialY = shiftY + problem.player.y;
+            if (potentialX < 0)
+            {
+                problem.player.x = 0;
+            } else if (potentialX > 1600)
+            {
+                problem.player.x = 1600;
+            } else
+            {
+                problem.player.x = potentialX;
+            }
+           
+            if(potentialY < 0)
+            {
+                problem.player.y = 0;
+            } else if(potentialY > 900)
+            {
+                problem.player.y = 900;
+            } else
+            {
+                problem.player.y = potentialY;
+            }
+         
         }
     }
 }

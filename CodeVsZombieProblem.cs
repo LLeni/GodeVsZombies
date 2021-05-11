@@ -11,22 +11,86 @@ namespace CodeVsZombies2
         public Zombie[] zombies;
         public Human[] humans;
         public Player player;
-
+        
+        public CodeVsZombieProblemRepo codeVsZombieProblemRepo;
+        public int indexCurrentProblem;
+        public int amountProblems;
         public CodeVsZombieProblem()
         {
-            zombies = new Zombie[5];
-            zombies[0] = new Zombie(500, 0, 0);
-            for (int i = 1; i < 5; i++)
+            codeVsZombieProblemRepo = new CodeVsZombieProblemRepo();
+            amountProblems = codeVsZombieProblemRepo.tests.Length;
+            indexCurrentProblem = 0;
+            SetProblem();
+        }
+
+        public void NextProblem()
+        {
+            if ((indexCurrentProblem + 1) != codeVsZombieProblemRepo.tests.Length)
             {
-                zombies[i] = new Zombie(i*100, i*100, i);
+                indexCurrentProblem++;
+                SetProblem();
+            }
+        }
+
+        public void PreviousProblem()
+        {
+            if ((indexCurrentProblem - 1) >= 0)
+            {
+                indexCurrentProblem--;
+                SetProblem();
+            }
+        }
+
+        private void SetProblem()
+        {
+            String[] values = codeVsZombieProblemRepo.tests[indexCurrentProblem].Split(' ');
+
+            player = new Player(Double.Parse(values[0]), Double.Parse(values[1]), -1);
+
+            List<Human> humans = new List<Human>();
+            List<Zombie> zombies = new List<Zombie>();
+
+            bool isRecordingHumans = true;  //для обнуления numberCreature
+            int numberCreature = 0;
+            double x = -1;
+            double y = -1;
+            for (int iValue = 2; iValue < values.Length; iValue++)
+            {
+                if (values[iValue] == "|")
+                {
+                    humans.Add(new Human(x, y, numberCreature));
+                    numberCreature++;
+                    x = -1;
+                    continue;
+                }
+
+                if (values[iValue] == "&")
+                {
+                    if (isRecordingHumans)
+                    {
+                        numberCreature = 0;
+                        isRecordingHumans = false;
+                    }
+                    zombies.Add(new Zombie(x, y, numberCreature));
+                    numberCreature++;
+                    x = -1;
+                    continue;
+                }
+
+                if (x == -1)
+                {
+                    x = Double.Parse(values[iValue]);
+                }
+                else
+                {
+                    y = Double.Parse(values[iValue]);
+                }
+
             }
 
-            humans = new Human[3];
-            humans[0] = new Human(250, 200, 0);
-            humans[1] = new Human(500, 200, 1);
-            humans[2] = new Human(1200, 200, 2);
-
-            player = new Player(500, 600, -1);
+            this.humans = humans.ToArray();
+            this.zombies = zombies.ToArray();
         }
+
     }
 }

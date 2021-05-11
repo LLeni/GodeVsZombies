@@ -28,6 +28,8 @@ namespace CodeVsZombies2
             isPaused = true;
             isStarted = false;
 
+            problem = new CodeVsZombieProblem();
+
             InitializeComponent();
 
             timer1.Interval =  trackBar1.Value  * 100;
@@ -35,6 +37,7 @@ namespace CodeVsZombies2
             timer1.Start();
 
             label1.Text = "Скорость ходов: " + trackBar1.Value * 100 + " мс";
+            label2.Text = "Проблема N0/" + (problem.amountProblems - 1);
         }
 
 /*        1 Zombies move towards their targets.
@@ -67,11 +70,9 @@ namespace CodeVsZombies2
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            
+        {      
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
-
 
             if (isStarted)
             {
@@ -80,13 +81,6 @@ namespace CodeVsZombies2
                 visualization.ShowRadiusPlayer(g);
                 visualization.ShowHUD(g);
             }
-
-
-
-        }
-
-        private void SetRemotePanel()
-        {
 
         }
 
@@ -115,7 +109,7 @@ namespace CodeVsZombies2
         //Запуск решения/Повторный запуск
         private void button2_Click(object sender, EventArgs e)
         {
-            problem = new CodeVsZombieProblem();
+;
             gameController = new GameController(problem);
             visualization = new Visualization(problem, gameController);
 
@@ -126,6 +120,44 @@ namespace CodeVsZombies2
             isPaused = false;
 
             button2.Text = "Перезапустить";
+
+            // Надо бы исправить это. Перекинуть в другое место как-нибудь
         }
+
+        //Кнопка предыдущего решения
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (problem.indexCurrentProblem - 1 >= 0)
+            {
+                SwitchProblem(-1);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (problem.amountProblems != problem.indexCurrentProblem + 1)
+            {
+                SwitchProblem(1);
+            }
+        }
+
+        private void SwitchProblem(int offsetProblem)
+        {
+            isPaused = true;
+            label2.Text = "Проблема N" + (problem.indexCurrentProblem + offsetProblem) + "/" + (problem.amountProblems - 1);
+            button2.Text = "Запустить";
+            button1.Enabled = false;
+
+            if(offsetProblem == 1)
+            {
+                problem.NextProblem();
+            }
+            if(offsetProblem == -1)
+            {
+                problem.PreviousProblem();
+            }
+        }
+
+
     }
 }
