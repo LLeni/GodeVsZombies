@@ -8,9 +8,9 @@ namespace CodeVsZombies2
 {
     class CodeVsZombieProblem
     {
-        public Zombie[] zombies;
-        public Human[] humans;
-        public Player player;
+        public Zombie[] zombies { get; set; }
+        public Human[] humans { get; set; }
+        public Player player { get; set; }
         
         public CodeVsZombieProblemRepo codeVsZombieProblemRepo;
         public int indexCurrentProblem;
@@ -96,6 +96,8 @@ namespace CodeVsZombies2
 
             this.humans = humans.ToArray();
             this.zombies = zombies.ToArray();
+
+            Evaluator.defineNeightbors(this.humans);
         }
 
     }

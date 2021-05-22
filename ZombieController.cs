@@ -109,7 +109,6 @@ namespace CodeVsZombies2
                     problem.zombies[nZombie].y = shiftY + problem.zombies[nZombie].y;
                 }
             }
-
             
             CalculateDistances();
         }

@@ -10,7 +10,9 @@ namespace CodeVsZombies2
     {
         public bool isAlive;
 
-        public Human(double x, double y, int index):base(x, y, index)
+        public int amountNeightbors;
+
+        public Human(double x, double y, int index):base(x, y, index, TypeTarget.Human)
         {
             isAlive = true;
 

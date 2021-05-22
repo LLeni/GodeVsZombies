@@ -12,11 +12,12 @@ namespace CodeVsZombies2
 
         public CodeVsZombieProblem problem;
         public ZombieController zombieController;
+        public PlayerController playerController;
         public int countZombies;
         public int countHumans;
 
         public int numberRound;
-        public String action; // то действие, которое выполнилось
+        public Action action; // то действие, которое выполнилось
         public int numberNextAction;
 
         public int score;
@@ -30,12 +31,23 @@ namespace CodeVsZombies2
 
         public RandomAlgorithm randomAlgorithm;
 
-        // В своем радиусе. Для эмуляции
+        // В своем радиусе. Для эмуляции (необязательно )
         public bool isPlayerHasTargets;
+
+
+        public enum Action
+        {
+            MoveZombies = 1,
+            MovePlayer = 2,
+            KillZombies = 3,
+            EatHumans = 4
+        }
+
         public GameController(CodeVsZombieProblem problem)
         {
             this.problem = problem;
             zombieController = new ZombieController(problem);
+            playerController = new PlayerController();
 
             countZombies = problem.zombies.Length;
             countHumans = problem.humans.Length;
@@ -55,39 +67,20 @@ namespace CodeVsZombies2
 
         public void KillZombies()
         {
-            action = "убийство зомби";
+            action = Action.KillZombies;
             numberNextAction = 4;
-
-            int countKilledZombies = 0;
-            //Вектор
-            double vX, vY, lengthV;
-            for(int nZombie = 0; nZombie < problem.zombies.Length; nZombie++)
-            {
-                if (problem.zombies[nZombie].isAlive)
-                {
-                    vX = problem.zombies[nZombie].x - problem.player.x;
-                    vY = problem.zombies[nZombie].y - problem.player.y;
-
-                    lengthV = Math.Sqrt(vX * vX + vY * vY);
-                    Console.WriteLine("Длина вектора у зомби " + nZombie + " равна " + lengthV);
-                    if (lengthV <= 200)
-                    {
-                        problem.zombies[nZombie].isAlive = false;
-                        countKilledZombies++;
-                    }
-
-                }
-            }
+            int countKilledZombies = playerController.Kill();
             if (countKilledZombies > 0)
             {
                 countZombies -= countKilledZombies;
                 IncreaseScore(countKilledZombies);
 
-                if(countZombies == 0)
+                if (countZombies == 0)
                 {
                     isWin = true;
                 }
             }
+
         }
 
         private void IncreaseScore(int countKilledZombies)
@@ -133,26 +126,26 @@ namespace CodeVsZombies2
 
         public void MovePlayer()
         {
-            action = "перемещение игрока";
+            action = Action.MovePlayer;
             numberNextAction = 3;
 
-            randomAlgorithm.Move();
+            playerController.Move();
+            //randomAlgorithm.Move();
         }
 
 
         public void MoveZombies()
         {
             numberRound++;
-            action = "перемещение зомби";
+            action = Action.MoveZombies;
             numberNextAction = 2;
             zombieController.Move();
-            
-
+           
         }
         public void EatHumans()
         {
             multiplier = 0;
-            action = "поедание людей";
+            action = Action.EatHumans;
             numberNextAction = 1;
             int countKilledHumans= zombieController.Eat();
             countHumans -= countKilledHumans;

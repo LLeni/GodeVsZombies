@@ -12,15 +12,15 @@ namespace CodeVsZombies2
     {
 
 
-        public Bitmap ZombieSprite = Properties.Resources.ZombieSprite,
+        private Bitmap ZombieSprite = Properties.Resources.ZombieSprite,
                       HumanSprite = Properties.Resources.HumanSprite,
                       AshSprite = Properties.Resources.AshSprite;
 
-        public CodeVsZombieProblem problem;
-        public GameController gameController;
+        private CodeVsZombieProblem problem;
+        private GameController gameController;
 
-        public const int WIDTH_FIELD = 1600;
-        public const int HEIGHT_FIELD = 900;
+        private const int WIDTH_FIELD = 1600;
+        private const int HEIGHT_FIELD = 900;
 
         public Simulation(CodeVsZombieProblem problem, GameController gameController)
         {

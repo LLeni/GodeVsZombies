@@ -17,7 +17,6 @@ namespace CodeVsZombies2
         }
 
 
-        //TODO: Запретить выходить за рамки
         public void Move()
         {
             // единичный вектор

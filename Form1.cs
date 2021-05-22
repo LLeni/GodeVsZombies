@@ -159,7 +159,7 @@ namespace CodeVsZombies2
                 button3.Enabled = true;
             }
 
-            if (problem.amountProblems != problem.indexCurrentProblem)
+            if (problem.amountProblems == problem.indexCurrentProblem + 1)
             {
                 button4.Enabled = false;
             }
