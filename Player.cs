@@ -11,7 +11,7 @@ namespace CodeVsZombies2
         public Zombie currentZombie;
 
 
-        public Player(double x, double y, int index):base(x, y, index, TypeTarget.Player, -1) // -1 - значит игрок
+        public Player(double x, double y, int index):base(x, y, index, TypeTarget.Player)
         {
   
         }

@@ -13,8 +13,6 @@ namespace CodeVsZombies2
         public int index;
 
         public TypeTarget typeTarget;
-
-        private int amountNeightbors;
         
         public enum TypeTarget {
             Player,
@@ -26,16 +24,6 @@ namespace CodeVsZombies2
             this.y = y;
             this.index = index;
             this.typeTarget = typeTarget;
-        }
-        public Target(double x, double y, int index, TypeTarget typeTarget, int amountNeightbors):this(x, y, index, typeTarget)
-        {
-            this.amountNeightbors = amountNeightbors;
-        }
-
-
-        public void SetAmountNeightbors(int amountNeightbors)
-        {
-            this.amountNeightbors
         }
     }
 }

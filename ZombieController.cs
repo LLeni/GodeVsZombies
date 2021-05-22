@@ -86,13 +86,14 @@ namespace CodeVsZombies2
                     {
                         Bx = problem.player.x;
                         By = problem.player.y;
-                        problem.zombies[nZombie].currentHuman = problem.player;
+                        problem.zombies[nZombie].isTargetHuman = false; 
                     }
                     else
                     {
                         Bx = problem.humans[indexHuman - 1].x;
                         By = problem.humans[indexHuman - 1].y;
                         problem.zombies[nZombie].currentHuman = problem.humans[indexHuman - 1];
+                        problem.zombies[nZombie].isTargetHuman = true;
                     }
 
                     double dx = Bx - Ax;

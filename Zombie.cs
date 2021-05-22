@@ -9,11 +9,14 @@ namespace CodeVsZombies2
     class Zombie
     {
 
-        public Target currentHuman;
+       
         public double x;
         public double y;
         public int index;
         public bool isAlive;
+
+        public Human currentHuman;
+        public bool isTargetHuman;
 
         public Zombie(double x, double y, int index)
         {

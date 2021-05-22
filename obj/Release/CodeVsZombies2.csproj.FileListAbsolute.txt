@@ -1,0 +1,9 @@
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\bin\Release\CodeVsZombies2.exe.config
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\bin\Release\CodeVsZombies2.exe
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\bin\Release\CodeVsZombies2.pdb
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Release\CodeVsZombies2.Form1.resources
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Release\CodeVsZombies2.Properties.Resources.resources
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Release\CodeVsZombies2.csproj.GenerateResource.cache
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Release\CodeVsZombies2.csproj.CoreCompileInputs.cache
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Release\CodeVsZombies2.exe
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Release\CodeVsZombies2.pdb

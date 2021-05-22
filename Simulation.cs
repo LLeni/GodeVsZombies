@@ -62,16 +62,17 @@ namespace CodeVsZombies2
             Pen pen = new Pen(new SolidBrush(Color.Red));
 
             for (int nZombie = 0; nZombie < problem.zombies.Length; nZombie++) {
-                if (problem.zombies[nZombie].isAlive && problem.zombies[nZombie].currentHuman != null)
+                if (problem.zombies[nZombie].isAlive)
                 {
-                    if (problem.zombies[nZombie].currentHuman.index == -1)
+                    if (problem.zombies[nZombie].isTargetHuman)
                     {
-                        g.DrawLine(pen, (int)problem.zombies[nZombie].x, (int)problem.zombies[nZombie].y, (int)problem.player.x, (int)problem.player.y);
-                    }
+                        g.DrawLine(pen, (int)problem.zombies[nZombie].x, (int)problem.zombies[nZombie].y, (int)problem.humans[problem.zombies[nZombie].currentHuman.index].x, (int)problem.humans[problem.zombies[nZombie].currentHuman.index].y);
+                    
+                        }
                     else
                     {
-
-                        g.DrawLine(pen, (int)problem.zombies[nZombie].x, (int)problem.zombies[nZombie].y, (int)problem.humans[problem.zombies[nZombie].currentHuman.index].x, (int)problem.humans[problem.zombies[nZombie].currentHuman.index].y);
+                        g.DrawLine(pen, (int)problem.zombies[nZombie].x, (int)problem.zombies[nZombie].y, (int)problem.player.x, (int)problem.player.y);
+                    
                     }
                 }
             }

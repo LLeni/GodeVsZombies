@@ -47,7 +47,7 @@ namespace CodeVsZombies2
         {
             this.problem = problem;
             zombieController = new ZombieController(problem);
-            playerController = new PlayerController();
+            playerController = new PlayerController(new Solution(problem.zombies, problem.humans, problem.player));
 
             countZombies = problem.zombies.Length;
             countHumans = problem.humans.Length;

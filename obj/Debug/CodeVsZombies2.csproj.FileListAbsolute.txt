@@ -7,3 +7,13 @@ C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombie
 C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.csproj.GenerateResource.cache
 C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.exe
 C:\Users\LLeni\source\repos\CodeVsZombies2\CodeVsZombies2\obj\Debug\CodeVsZombies2.pdb
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.csprojAssemblyReference.cache
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.Form1.resources
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.Properties.Resources.resources
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.csproj.GenerateResource.cache
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.csproj.CoreCompileInputs.cache
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.exe
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\obj\Debug\CodeVsZombies2.pdb
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\bin\Debug\CodeVsZombies2.exe.config
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\bin\Debug\CodeVsZombies2.exe
+C:\Users\MUDRICH ANNA\Source\Repos\GodeVsZombies\bin\Debug\CodeVsZombies2.pdb

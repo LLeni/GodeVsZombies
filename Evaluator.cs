@@ -11,8 +11,10 @@ namespace CodeVsZombies2
 
         public static int evaluate(Solution solution)
         {
+            int evaluation = 0;
+
             int maxNeightbors = 0;
-            int indexMustProtectedHuman
+            int indexMustProtectedHuman;
             for (int nHuman = 0; nHuman < solution.Humans.Length; nHuman++)
             {
                 if(maxNeightbors < solution.Humans[nHuman].amountNeightbors)
@@ -21,14 +23,52 @@ namespace CodeVsZombies2
                 }
             }
 
-            Human mustProtectedHuman;
+            List<Human> mustProtectedHumans = new List<Human>();
 
             for(int nZombie = 0; nZombie < solution.Zombies.Length; nZombie++)
             {
-                if(solution.Zombies[nZombie].currentHuman.)
+                if(solution.Zombies[nZombie].isTargetHuman && solution.Zombies[nZombie].currentHuman.amountNeightbors == maxNeightbors)
+                {
+                    mustProtectedHumans.Add(solution.Zombies[nZombie].currentHuman);
+                }
             }
 
-            return 0;
+            for(int nZombie = 0; nZombie < solution.Zombies.Length; nZombie++)
+            {
+                if (mustProtectedHumans.Contains(solution.Zombies[nZombie].currentHuman))
+                {
+                    if(solution.Zombies[nZombie] == solution.Player.currentZombie)
+                    {
+                         evaluation += 20 * maxNeightbors;
+                    } else
+                    {
+                         evaluation += -20 * maxNeightbors;
+                    }
+                         
+                } else
+                {
+                    if(solution.Zombies[nZombie] == solution.Player.currentZombie)
+                    {
+                        evaluation += 10 * maxNeightbors;
+                    } else
+                    {
+                        evaluation += -10 * maxNeightbors;
+                    }
+                }
+            }
+
+
+            //Если зомби идет к игроку, то получаем за это пряню
+            for(int nZombie = 0; nZombie < solution.Zombies.Length; nZombie++)
+            {
+                if (solution.Zombies[nZombie].isTargetHuman)
+                {
+                    evaluation += 100;
+                }
+            }
+
+            System.Diagnostics.Debug.WriteLine("Ev: " + evaluation);
+            return evaluation;
         }
 
         public static void defineNeightbors(Human[] humans)
